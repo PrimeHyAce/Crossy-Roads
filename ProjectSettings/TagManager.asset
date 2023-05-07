@@ -7,7 +7,9 @@ TagManager:
   - Car
   - Coin
   - Eagle
-  - Bomb
+  - Wood
+  - Water
+  - River
   layers:
   - Default
   - TransparentFX

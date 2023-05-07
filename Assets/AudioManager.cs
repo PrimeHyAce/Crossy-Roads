@@ -4,46 +4,79 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] AudioClip bgmSound;
-    [SerializeField] AudioClip jumpSound;
-    [SerializeField] AudioClip coinCollectSound;
-    [SerializeField] AudioClip deathSound;
-    [SerializeField] AudioClip carHornSound;
-    [SerializeField] AudioClip countdownSound;
-
+    static AudioSource bgmInstance;
+    static AudioSource sfxInstance;
     [SerializeField] AudioSource bgm;
-    [SerializeField] AudioSource jump;
-    [SerializeField] AudioSource coinCollect;
-    [SerializeField] AudioSource death;
-    [SerializeField] AudioSource carHorn;
-    [SerializeField] AudioSource countdown;
+    [SerializeField] AudioSource sfx;
 
-    private void Start() {
-        countdown.PlayOneShot(countdownSound);
-        //play bgm after countdown stop
-        bgm.clip = bgmSound;
-        bgm.PlayDelayed(4.0f);
+    public bool IsMute { get => bgm.mute; }
+    public float BGMVolume { get => bgm.volume; }
+    public float SFXVolume { get => sfx.volume; }
+
+
+    private void Awake() {
+        if (bgmInstance != null)
+        {
+            Destroy(bgm.gameObject);
+            bgm = bgmInstance;
+        } else {
+            bgmInstance = bgm;
+            bgm.transform.SetParent(null);
+            DontDestroyOnLoad(bgm.gameObject);
+        }
+
+        if (sfxInstance != null)
+        {
+            Destroy(sfx.gameObject);
+            sfx = sfxInstance;
+        } else {
+            sfxInstance = sfx;
+            sfx.transform.SetParent(null);
+            DontDestroyOnLoad(sfx.gameObject);
+        }
+
+        bgm.volume = PlayerPrefs.GetFloat("bgmVolume", 1);
+        sfx.volume = PlayerPrefs.GetFloat("sfxVolume", 1);
+        bgm.mute = PlayerPrefs.GetInt("mute") == 0 ? false : true;
         
     }
 
-    public void PlayJumpSound()
+    public void PlayBGM(AudioClip clip, bool loop = true)
     {
-        jump.PlayOneShot(jumpSound);
+        if (bgm.isPlaying)
+        {
+            bgm.Stop();
+        }
+        
+        bgm.clip = clip;
+        bgm.loop = loop;
+        bgm.Play();
     }
 
-    public void PlayCoinCollectSound()
+    public void PlaySFX(AudioClip clip)
     {
-        coinCollect.PlayOneShot(coinCollectSound);
+        if (sfx.isPlaying)
+        {
+            sfx.Stop();
+        }
+
+        sfx.clip = clip;
+        sfx.Play();
     }
 
-    public void PlayDeathSound()
+    public void SetMute(bool value)
     {
-        death.PlayOneShot(deathSound);
+        bgm.mute = value;
+        sfx.mute = value;
+    }
+    public void SetBGMVolume(float value)
+    {
+        bgm.volume = value;
     }
 
-    public void PlayCarHornSound()
+    public void SetSFXVolume(float value)
     {
-        carHorn.PlayOneShot(carHornSound);
+        sfx.volume = value;
     }
 }
 
