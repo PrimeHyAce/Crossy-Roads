@@ -11,6 +11,11 @@ public class PlayCountdown : MonoBehaviour
     public UnityEvent OnEnd;
 
     private void Start() {
+        StartCountdown();
+    }
+
+    public void StartCountdown()
+    {
         OnStart.Invoke();
         var sequence = DOTween.Sequence();
         tmpText.transform.localScale = Vector3.zero;
@@ -48,4 +53,5 @@ public class PlayCountdown : MonoBehaviour
                 OnEnd.Invoke();
             }));
     }
+
 }

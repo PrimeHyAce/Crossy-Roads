@@ -17,6 +17,7 @@ public class Astrounaut : MonoBehaviour
     public UnityEvent<int> OnGetCoin;
     public UnityEvent OnDie;
     public UnityEvent OnCarCollision;
+    public UnityEvent OnEagleCollision;
     private bool isMoveable = false;
     private void Update() {
         if(isMoveable == false) return;
@@ -118,6 +119,7 @@ public class Astrounaut : MonoBehaviour
         {
             if (transform.parent == null)
             {
+                OnEagleCollision.Invoke();
                 transform.parent = other.transform;
                 Invoke("Die", 3);
             }
