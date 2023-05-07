@@ -53,16 +53,25 @@ public class AudioManager : MonoBehaviour
         bgm.Play();
     }
 
+    // play sfx at the same time
     public void PlaySFX(AudioClip clip)
     {
-        if (sfx.isPlaying)
-        {
-            sfx.Stop();
-        }
-
-        sfx.clip = clip;
-        sfx.Play();
+        AudioSource sfxInstance = Instantiate(sfx);
+        sfxInstance.clip = clip;
+        sfxInstance.Play();
+        Destroy(sfxInstance.gameObject, clip.length);
     }
+
+    // public void PlaySFX(AudioClip clip)
+    // {
+    //     if (sfx.isPlaying)
+    //     {
+    //         sfx.Stop();
+    //     }
+
+    //     sfx.clip = clip;
+    //     sfx.Play();
+    // }
 
     public void SetMute(bool value)
     {
