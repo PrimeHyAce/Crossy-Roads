@@ -48,7 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgm: {fileID: 3899995031621024207}
   sfx: {fileID: 3899995031317759514}
-  countdown: {fileID: 8300000, guid: 99248f6476ebe374db94515dc41dd36f, type: 3}
 --- !u!1 &3899995031317759512
 GameObject:
   m_ObjectHideFlags: 0
