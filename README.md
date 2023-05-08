@@ -15,4 +15,11 @@ Dragon Appears: If you do not move for 10 seconds or take 5 steps back, you will
 ![image](https://user-images.githubusercontent.com/77986121/236812392-6cd9b0d0-b406-43da-b219-f3017e43a00e.png)
 
 Gameplay:
+https://user-images.githubusercontent.com/77986121/236818329-45fc3c18-0478-4950-b85e-0d40e634bf1c.mp4
+
+
+If you want to play the game, you can download it from the release or simply get it from the following link: 
+1. Drive: https://drive.google.com/file/d/1zg8fOkmXUoCYvu61cAGy7Zl7pY26339i/view?usp=sharing
+2. Itch.io: 
+
 
